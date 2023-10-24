@@ -2,27 +2,32 @@ import boto3
 import botocore.exceptions
 import json
 
-ec2 = boto3.client('ec2')
+ec2 = boto3.client('ec2', region_name='ap-south-1')
 s3 = boto3.client('s3')
 
 def lambda_handler(event, context):
-    instance_id = event['detail']['instance-id']
-    bucket_name = 'ajays3bucket12'  # Replace with your S3 bucket name
+    bucket_name = 'ajays3bucket12'
 
     try:
-        # Check if the instance state is 'shutting-down'
-        state = event['detail']['state']
-        if state == 'shutting-down':
-            # Describe the instance
-            instance = ec2.describe_instances(InstanceIds=[instance_id])
-            # Convert the instance data to JSON
-            instance_json = json.dumps(instance, default=str)
-            # Save instance data to S3
-            s3.put_object(Bucket=bucket_name, Key=f'ec2_instance_{instance_id}.json', Body=instance_json)
+        instances = ec2.describe_instances(Filters=[{'Name': 'instance-state-name', 'Values': ['running', 'shutting-down']}])
+        
+        for reservation in instances['Reservations']:
+            for instance in reservation['Instances']:
+                instance_id = instance['InstanceId']
+                state = instance['State']['Name']
+                
+                if state == 'shutting-down':
+                    instance_json = json.dumps(instance, default=str)
+                    s3.put_object(Bucket=bucket_name, Key=f'ec2_instance_{instance_id}.json', Body=instance_json)
+                    
+        return {
+            'statusCode': 200,
+            'body': 'Instance states saved to S3.'
+        }
+    
     except botocore.exceptions.ClientError as e:
         print(f"Error: {e}")
-
-    return {
-        'statusCode': 200,
-        'body': 'Instance state saved to S3.'
-    }
+        return {
+            'statusCode': 500,
+            'body': 'Error occurred while checking instance states.'
+        }
