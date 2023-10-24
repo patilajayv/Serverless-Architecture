@@ -1,5 +1,6 @@
 # Serverless-Architecture
 1. [Load Balancer Health Checker](#load-balancer-health-checker)
+2. [EC2 Backup To S3 Bucket](#ec2-backup-to-s3-bucket)
    
 ---
 ### Load Balancer Health Checker
@@ -29,6 +30,16 @@
    
 6. Check mail alert
  > ![GitHub Logo](https://github.com/patilajayv/Serverless-Architecture/blob/main/mailNotification.png)
+
+
+ ---
+ ### EC2 Backup To S3 Bucket
+#### Steps To Replicate
+
+1. Login to AWS Console and Create S3 Bucket as per images
+   > ![GitHub Logo](https://github.com/patilajayv/Serverless-Architecture/blob/main/S3_1.png)
+   > ![GitHub Logo](https://github.com/patilajayv/Serverless-Architecture/blob/main/S3_2.png)
+   > ![GitHub Logo](https://github.com/patilajayv/Serverless-Architecture/blob/main/S3_3.png)
    
 
 
