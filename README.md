@@ -40,6 +40,20 @@
    > ![GitHub Logo](https://github.com/patilajayv/Serverless-Architecture/blob/main/S3_1.png)
    > ![GitHub Logo](https://github.com/patilajayv/Serverless-Architecture/blob/main/S3_2.png)
    > ![GitHub Logo](https://github.com/patilajayv/Serverless-Architecture/blob/main/S3_3.png)
+2. Click on Create function
+  > ![image](https://github.com/patilajayv/Serverless-Architecture/blob/main/createLambdaFuction.png)
+   
+   
+3. Fill Details as per Image and click on Create Function
+  > ![GitHub Logo](https://github.com/patilajayv/Serverless-Architecture/blob/main/detailsLambda.png)
+  
+
+4. Add code which is mention in file [ec2Bkp.py](https://github.com/patilajayv/Serverless-Architecture/blob/main/ec2Bkp.py)
+ > ![GitHub Logo](https://github.com/patilajayv/Serverless-Architecture/blob/main/codeLambda.png)
+
+
+5. Click on add trigger and fill details according to image and click on add
+> ![GitHub Logo](https://github.com/patilajayv/Serverless-Architecture/blob/main/Env_trigge_rule.png)
    
 
 
